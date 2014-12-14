@@ -1,0 +1,38 @@
+CREATE DATABASE Pharm;
+
+CREATE TABLE `Pharmacies`
+(
+`PharmacyID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`Name` VARCHAR(100) NOT NULL,
+`Address` VARCHAR(255) NOT NULL,
+)
+DEFAULT COLLATE utf8_unicode_ci ;
+
+CREATE TABLE `Employees`
+(
+`EmployeeID` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`Name` VARCHAR(100) NOT NULL,
+`Surname` VARCHAR(100) NOT NULL,
+`Age` INT (3) NOT NULL,
+`Gender` VARCHAR (20),
+`IDNumber` VARCHAR (30) NOT NULL,
+`Phone` VARCHAR (30) NOT NULL,
+INDEX `EmployeeID` (`PharmacyID`),
+FOREIGN KEY (`PharmacyID`),
+REFERENCES `Pharmacies`(`PharmacyID`),
+ON DELETE CASCADE
+)
+DEFAULT COLLATE utf8_unicode_ci;
+
+CREATE TABLE `Drugs`
+(
+`DrugsID` INT (30) NOT NULL AUTO_INCREMENT,
+`ExpDate` DATE NOT NULL,
+`Distributor` VARCHAR (100) NOT NULL,
+`Price` INT (9) NOT NULL,
+`Quantity` INT (9) NOT NULL,
+PRIMARY KEY `DrugsID` (`DrugsID`)
+FOREIGN KEY PharmacyID (`PharmacyID`)
+REFERENCES `Pharmacies` (`PharmacyID`),
+)
+DEFAULT COLLATE utf8_unicode_ci;
